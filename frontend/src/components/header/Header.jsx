@@ -9,7 +9,7 @@ const Header = () => {
         <a className="main-nav-logo" href="./index.html">
           <img
             className="main-nav-logo-image"
-            src="src\assets\images\argentBankLogo.png"
+            src="src\assets\images\argentBankLogo.webp"
             alt="Argent Bank Logo"
           />
         </a>
