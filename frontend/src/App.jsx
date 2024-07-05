@@ -2,11 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.scss";
 
-import { HomePage } from "./pages/HomePage";
-import { User } from "./pages/User";
-import { SignIn } from "./pages/SignIn";
-import { Error } from "./pages/Error";
+import { HomePage } from "./pages/homepage/HomePage";
+import { User } from "./pages/user/User";
+import { SignIn } from "./pages/signIn/SignIn";
+import { Error } from "./pages/error/Error";
 import { Header } from "./components/header/Header";
+import { Footer } from "./components/footer/Footer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="*" element={<Error />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

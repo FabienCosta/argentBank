@@ -1,6 +1,6 @@
 import "./header.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle as faCircleUse } from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   return (
@@ -15,8 +15,8 @@ const Header = () => {
         </a>
         <div>
           <a className="main-nav-item" href="./sign-in.html">
-            <FontAwesomeIcon icon={faCircleUse} />
-            <i className="fa fa-user-circle">lala</i>
+            <FontAwesomeIcon icon={faCircleUser} />
+            <i className="fa fa-user-circle"></i>
             Sign In
           </a>
         </div>
