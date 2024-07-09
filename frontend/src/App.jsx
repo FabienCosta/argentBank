@@ -9,7 +9,7 @@ import { Error } from "./pages/error/Error";
 import { Header } from "./components/header/Header";
 import { Footer } from "./components/footer/Footer";
 
-function App() {
+export const App = () => {
   return (
     <>
       <BrowserRouter>
@@ -24,6 +24,4 @@ function App() {
       </BrowserRouter>
     </>
   );
-}
-
-export { App };
+};

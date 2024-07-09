@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div>
       <nav className="main-nav">
-        <a className="main-nav-logo" href="./index.html">
+        <a className="main-nav-logo" href="../">
           <img
             className="main-nav-logo-image"
             src="src\assets\images\argentBankLogo.webp"
@@ -14,7 +14,7 @@ const Header = () => {
           />
         </a>
         <div>
-          <a className="main-nav-item" href="./sign-in.html">
+          <a className="main-nav-item" href="../signIn">
             <FontAwesomeIcon icon={faCircleUser} />
             <i className="fa fa-user-circle"></i>
             Sign In
