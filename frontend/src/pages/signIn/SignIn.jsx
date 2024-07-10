@@ -1,7 +1,7 @@
-import "./signin.scss";
 import { Loggin } from "../../components/logginForm/LogginForm";
+import "./signin.scss";
 
-const SignIn = () => {
+export const SignIn = () => {
   return (
     <div>
       <main className="main bg-dark">
@@ -11,4 +11,4 @@ const SignIn = () => {
   );
 };
 
-export { SignIn };
+// export { SignIn };

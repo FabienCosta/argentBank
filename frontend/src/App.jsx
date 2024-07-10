@@ -4,10 +4,10 @@ import "./App.scss";
 
 import { HomePage } from "./pages/homepage/HomePage";
 import { User } from "./pages/user/User";
-import { SignIn } from "./pages/signIn/SignIn";
 import { Error } from "./pages/error/Error";
 import { Header } from "./components/header/Header";
 import { Footer } from "./components/footer/Footer";
+import { SignIn } from "./pages/signIn/SignIn";
 
 export const App = () => {
   return (
