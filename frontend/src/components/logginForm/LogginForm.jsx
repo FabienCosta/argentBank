@@ -1,18 +1,31 @@
 import "./logginForm.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { login } from "../../store/actions/actions";
 
 export const Loggin = () => {
-  //? je veux recuperer le resultat de l'input et le comparer a la bdd et ensuite autoriser l'acces sinon afficher un message d'erreur
   const dispatch = useDispatch();
+  let navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { error } = useSelector((state) => state.login);
+  const { token } = useSelector((state) => state.login);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    dispatch(Loggin(username, password));
+    dispatch(login(email, password));
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/user");
+    }
+  }, [token, navigate]);
 
   return (
     <div>
@@ -24,14 +37,23 @@ export const Loggin = () => {
         <form onClick={handleSubmit}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
-            <input type="text" id="username" autoComplete="username" />
+            <input
+              type="text"
+              id="username"
+              autoComplete="username"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">Password</label>
             <input
               type="password"
-              id="password"
               autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <div className="input-remember">

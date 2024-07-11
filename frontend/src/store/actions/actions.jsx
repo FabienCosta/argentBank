@@ -2,7 +2,7 @@ import { USER_LOGIN_FAIL, USER_LOGIN_SUCCESS } from "../reducers/reducers";
 
 import axios from "axios";
 
-export const Loggin = (email, password) => async (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
   try {
     const config = {
       headers: {

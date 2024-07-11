@@ -1,7 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { loginReducer } from "./reducers/reducers";
 
+const rootReducer = combineReducers({
+  login: loginReducer,
+});
+
 export const store = configureStore({
-  reducer: loginReducer,
+  reducer: rootReducer,
   devTools: true,
 });
