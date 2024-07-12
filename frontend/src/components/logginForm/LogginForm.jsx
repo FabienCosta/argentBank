@@ -60,10 +60,10 @@ export const Loggin = () => {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <a href="./user.html" className="sign-in-button">
+          <button className="sign-in-button" type="submit" name="Login">
             Sign In
-          </a>
-          {/* <button className="sign-in-button">Sign In</button> */}
+          </button>
+          {error && <div className="error">{error}</div>}
         </form>
       </section>
     </div>
