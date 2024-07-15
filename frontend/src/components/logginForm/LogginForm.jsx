@@ -12,13 +12,25 @@ export const Loggin = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const { error } = useSelector((state) => state.login);
-  const { token } = useSelector((state) => state.login);
+  const { token, error } = useSelector((state) => state.login);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(login(email, password));
+    try {
+      const response = await login(email, password);
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.token);
+        navigate("/user");
+      } else {
+        const { message } = response.data;
+        setErrorMessage(message || "Adresse email ou mot de passe incorrect");
+      }
+    } catch (error) {
+      setErrorMessage("Email ou mot de passe incorrect");
+    }
   };
 
   useEffect(() => {
@@ -34,7 +46,8 @@ export const Loggin = () => {
         <i className="fa fa-user-circle"></i>
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
-        <form onClick={handleSubmit}>
+        {errorMessage && <div className="error">{errorMessage}</div>}
+        <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
             <label htmlFor="username">Username</label>
             <input
@@ -60,6 +73,7 @@ export const Loggin = () => {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
+
           <button className="sign-in-button" type="submit" name="Login">
             Sign In
           </button>
