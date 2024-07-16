@@ -1,4 +1,8 @@
-import { USER_LOGIN_FAIL, USER_LOGIN_SUCCESS } from "../reducers/reducers";
+import {
+  USER_LOGIN_FAIL,
+  USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
+} from "../reducers/reducers";
 
 import axios from "axios";
 
@@ -28,4 +32,8 @@ export const login = (email, password) => async (dispatch) => {
           : error.message,
     });
   }
+};
+
+export const logout = () => (dispatch) => {
+  dispatch({ type: USER_LOGOUT });
 };
