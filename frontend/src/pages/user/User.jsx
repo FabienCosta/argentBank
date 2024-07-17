@@ -9,10 +9,11 @@ const User = () => {
   let navigate = useNavigate();
 
   const { token } = useSelector((state) => state.login);
+  console.log(token);
 
   useEffect(() => {
-    if (!token) {
-      navigate("/");
+    if (token === null) {
+      navigate("/signin");
     }
   }, [token, navigate]);
 
