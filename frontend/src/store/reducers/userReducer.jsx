@@ -9,6 +9,7 @@ export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_PROFILE_SUCCESS:
       return {
+        ...state,
         succes: true,
         firstName: action.payload.firstName,
         lastName: action.payload.lastName,

@@ -10,7 +10,6 @@ import { logout } from "../../store/actions/actions";
 
 export const Header = () => {
   const { token } = useSelector((state) => state.login);
-  console.log(token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

@@ -1,6 +1,6 @@
 import {
-  USER_LOGIN_FAIL,
-  USER_LOGIN_SUCCESS,
+  // USER_LOGIN_FAIL,
+  // USER_LOGIN_SUCCESS,
   USER_LOGOUT,
 } from "../reducers/reducers";
 
@@ -50,20 +50,25 @@ export const userProfile = (token) => async (dispatch) => {
       "http://localhost:3001/api/v1/user/profile",
       { token },
       config
-    );
-    dispatch({
-      type: USER_LOGIN_SUCCESS,
-      payload: data,
+    )
+    .then((response) => {
+      dispatch({
+        type: USER_PROFILE_SUCCESS,
+        payload: response.data,
+      });
+    })
+    .catch((error) => {
+      dispatch({
+        type: USER_PROFILE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
     });
-  } catch (error) {
-    dispatch({
-      type: USER_LOGIN_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+    
   }
+
 };
 
 export const logout = () => (dispatch) => {
