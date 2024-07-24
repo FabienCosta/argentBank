@@ -1,10 +1,6 @@
-import { useSelector } from "react-redux";
 import "./homepage.scss";
 
 const HomePage = () => {
-  const token = useSelector((state) => state.login.token);
-  console.log(token);
-
   return (
     <div>
       <main>

@@ -1,5 +1,6 @@
 export const USER_PROFILE_SUCCESS = "USER_PROFILE_SUCCESS";
 export const USER_PROFILE_FAIL = "USER_PROFILE_FAIL";
+export const USER_PROFILE_UPDATE = "USER_PROFILE_UPDATE";
 
 const initialState = {
   succes: false,
@@ -15,6 +16,12 @@ export const userReducer = (state = initialState, action) => {
         firstName: action.payload.body.firstName,
         lastName: action.payload.body.lastName,
         userName: action.payload.body.userName,
+      };
+    case USER_PROFILE_UPDATE:
+      return {
+        succes: true,
+        firstName: action.payload.body.firstName,
+        lastName: action.payload.body.lastName,
       };
     case USER_PROFILE_FAIL:
       return {

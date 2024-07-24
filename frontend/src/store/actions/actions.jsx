@@ -2,11 +2,12 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGIN_SUCCESS,
   USER_LOGOUT,
-} from "../reducers/reducers";
+} from "../reducers/authReducers";
 
 import {
   USER_PROFILE_FAIL,
   USER_PROFILE_SUCCESS,
+  USER_PROFILE_UPDATE,
 } from "../reducers/userReducers";
 
 import axios from "axios";
@@ -72,3 +73,33 @@ export const userProfile = (token) => async (dispatch) => {
     });
   }
 };
+
+export const updateUserProfile =
+  (token, newFirstName, newLastName) => async (dispatch) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const { data } = await axios.put(
+        "http://localhost:3001/api/v1/user/profile",
+        { firstName: newFirstName, lastName: newLastName },
+        config
+      );
+      dispatch({
+        type: USER_PROFILE_UPDATE,
+        payload: data,
+      });
+      dispatch(userProfile(token));
+    } catch (error) {
+      dispatch({
+        type: USER_PROFILE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
