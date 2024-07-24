@@ -12,6 +12,7 @@ export const Header = () => {
   const { token } = useSelector((state) => state.login);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userName = useSelector((state) => state.user.userName);
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -42,7 +43,7 @@ export const Header = () => {
             <a className="main-nav-item" href="../user">
               <FontAwesomeIcon icon={faCircleUser} />
               <i className="fa fa-user-circle"></i>
-              {"Iron"}
+              {userName}
             </a>
           ) : (
             ""
