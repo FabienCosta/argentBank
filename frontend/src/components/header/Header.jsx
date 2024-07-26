@@ -1,12 +1,12 @@
-import "./header.scss";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleUser,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
 import { logout } from "../../store/actions/actions";
+import "./header.scss";
 
 export const Header = () => {
   const { token } = useSelector((state) => state.login);

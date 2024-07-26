@@ -7,25 +7,14 @@ export const UserTitle = () => {
   const { token } = useSelector((state) => state.login);
   const firstName = useSelector((state) => state.user.firstName);
   const lastName = useSelector((state) => state.user.lastName);
+  const userName = useSelector((state) => state.user.userName);
+  const { succes } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const [newFirstName, setNewFirstName] = useState();
   const [newLastName, setNewLastName] = useState();
-  const [editButton, setEditButton] = useState("");
-  const { succes } = useSelector((state) => state.user);
-  const editNameButton = (e) => {
-    e.preventDefault();
-    setEditButton((current) => !current);
-  };
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(updateUserProfile(token, newFirstName, newLastName));
-    // eslint-disable-next-line no-constant-condition
-    if ({ succes }) {
-      setEditButton((current) => !current);
-    }
-  };
+  const [newUserName, setNewUserName] = useState();
+  const [editButton, setEditButton] = useState(false);
 
   let navigate = useNavigate();
 
@@ -34,6 +23,19 @@ export const UserTitle = () => {
       navigate("/");
     }
   }, [token, navigate]);
+
+  const editNameButton = (e) => {
+    e.preventDefault();
+    setEditButton((current) => !current);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(updateUserProfile(token, newFirstName, newLastName, newUserName));
+    if (succes) {
+      setEditButton((current) => !current);
+    }
+  };
 
   return (
     <>
@@ -65,12 +67,18 @@ export const UserTitle = () => {
                 onChange={(e) => setNewLastName(e.target.value)}
                 required
               />
+              <input
+                type="text"
+                placeholder={userName}
+                onChange={(e) => setNewUserName(e.target.value)}
+                required
+              />
             </div>
             <div className="editNameButtons">
               <button className="save-button" type="submit">
                 Save
               </button>
-              <button className="cancel-button" onClick={editNameButton}>
+              <button className="cancel-button" onClick={submitHandler}>
                 Cancel
               </button>
             </div>

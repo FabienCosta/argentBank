@@ -75,7 +75,7 @@ export const userProfile = (token) => async (dispatch) => {
 };
 
 export const updateUserProfile =
-  (token, newFirstName, newLastName) => async (dispatch) => {
+  (token, newFirstName, newLastName, newUserName) => async (dispatch) => {
     try {
       const config = {
         headers: {
@@ -85,7 +85,11 @@ export const updateUserProfile =
       };
       const { data } = await axios.put(
         "http://localhost:3001/api/v1/user/profile",
-        { firstName: newFirstName, lastName: newLastName },
+        {
+          firstName: newFirstName,
+          lastName: newLastName,
+          userName: newUserName,
+        },
         config
       );
       dispatch({

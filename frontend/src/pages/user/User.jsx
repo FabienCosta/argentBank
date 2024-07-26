@@ -1,9 +1,9 @@
-import { UserTitle } from "../../components/userTitle/UserTitle";
-import { useSelector } from "react-redux";
-import { Account } from "../../components/account/Account";
-import "./user.scss";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { UserTitle } from "../../components/userTitle/UserTitle";
+import { Account } from "../../components/account/Account";
+import "./user.scss";
 
 const User = () => {
   let navigate = useNavigate();
@@ -21,8 +21,6 @@ const User = () => {
       <main className="main bg-dark">
         <UserTitle />
         <h2 className="sr-only">Accounts</h2>
-        <Account />
-        <Account />
         <Account />
       </main>
     </div>

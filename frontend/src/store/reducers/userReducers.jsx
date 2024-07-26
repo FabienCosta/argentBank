@@ -22,6 +22,7 @@ export const userReducer = (state = initialState, action) => {
         succes: true,
         firstName: action.payload.body.firstName,
         lastName: action.payload.body.lastName,
+        userName: action.payload.body.userName,
       };
     case USER_PROFILE_FAIL:
       return {

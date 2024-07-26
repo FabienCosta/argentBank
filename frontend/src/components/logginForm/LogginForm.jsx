@@ -1,10 +1,10 @@
-import "./logginForm.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { login } from "../../store/actions/actions";
+import "./logginForm.scss";
 
 export const Loggin = () => {
   const dispatch = useDispatch();
@@ -40,7 +40,7 @@ export const Loggin = () => {
   }, [token, navigate]);
 
   return (
-    <div>
+    <div className="sign-in-box">
       <section className="sign-in-content">
         <FontAwesomeIcon icon={faCircleUser} />
         <i className="fa fa-user-circle"></i>
