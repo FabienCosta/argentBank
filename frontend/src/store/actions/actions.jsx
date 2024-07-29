@@ -74,36 +74,33 @@ export const userProfile = (token) => async (dispatch) => {
   }
 };
 
-export const updateUserProfile =
-  (token, newFirstName, newLastName, newUserName) => async (dispatch) => {
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const { data } = await axios.put(
-        "http://localhost:3001/api/v1/user/profile",
-        {
-          firstName: newFirstName,
-          lastName: newLastName,
-          userName: newUserName,
-        },
-        config
-      );
-      dispatch({
-        type: USER_PROFILE_UPDATE,
-        payload: data,
-      });
-      dispatch(userProfile(token));
-    } catch (error) {
-      dispatch({
-        type: USER_PROFILE_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
+export const updateUserProfile = (token, newUserName) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const { data } = await axios.put(
+      "http://localhost:3001/api/v1/user/profile",
+      {
+        userName: newUserName,
+      },
+      config
+    );
+    dispatch({
+      type: USER_PROFILE_UPDATE,
+      payload: data,
+    });
+    dispatch(userProfile(token));
+  } catch (error) {
+    dispatch({
+      type: USER_PROFILE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

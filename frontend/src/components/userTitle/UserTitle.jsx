@@ -11,8 +11,8 @@ export const UserTitle = () => {
   const { succes } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-  const [newFirstName, setNewFirstName] = useState();
-  const [newLastName, setNewLastName] = useState();
+  // const [newFirstName, setNewFirstName] = useState();
+  // const [newLastName, setNewLastName] = useState();
   const [newUserName, setNewUserName] = useState();
   const [editButton, setEditButton] = useState(false);
 
@@ -31,7 +31,7 @@ export const UserTitle = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(updateUserProfile(token, newFirstName, newLastName, newUserName));
+    dispatch(updateUserProfile(token, newUserName));
     if (succes) {
       setEditButton((current) => !current);
     }
@@ -55,7 +55,7 @@ export const UserTitle = () => {
           <h1>Welcome back</h1>
           <form className="editNameContent" onSubmit={submitHandler}>
             <div className="editNameInputs">
-              <input
+              {/* <input
                 type="text"
                 placeholder={firstName}
                 onChange={(e) => setNewFirstName(e.target.value)}
@@ -66,7 +66,7 @@ export const UserTitle = () => {
                 placeholder={lastName}
                 onChange={(e) => setNewLastName(e.target.value)}
                 required
-              />
+              /> */}
               <input
                 type="text"
                 placeholder={userName}
