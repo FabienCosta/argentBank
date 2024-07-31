@@ -1,0 +1,28 @@
+swagger: '2.0'
+info:
+  title: API de gestion des transactions 
+  description: Cette API permet aux utilisateurs de gérer leurs transactions bancaires, y compris la récupération, l'ajout, la modification et la suppression de transactions.
+  version: 1.0.0
+host: localhost:3001
+basePath: /api/v2
+schemes:
+  - http
+paths:
+  /user/transactions:
+    get:
+      summary: Point de terminaison d'exemple
+      description: Récupérer une ressource d'exemple.
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: Attacher un jeton JWT de type Bearer
+          type: string
+      responses:
+        200:
+          description: Réponse réussie
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
