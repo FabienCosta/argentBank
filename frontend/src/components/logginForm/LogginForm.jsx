@@ -26,10 +26,10 @@ export const Loggin = () => {
         navigate("/user");
       } else {
         const { message } = response.data;
-        setErrorMessage(message || "Adresse email ou mot de passe incorrect");
+        setErrorMessage(message || "Identifiants incorrect");
       }
     } catch (error) {
-      setErrorMessage("Email ou mot de passe incorrect");
+      setErrorMessage("Identifiants incorrect");
     }
   };
 
