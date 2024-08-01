@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { updateUserProfile } from "../../store/actions/actions";
+import "./userTitle.scss";
 
 export const UserTitle = () => {
   const { token } = useSelector((state) => state.login);
@@ -55,24 +56,17 @@ export const UserTitle = () => {
           <h1>Welcome back</h1>
           <form className="editNameContent" onSubmit={submitHandler}>
             <div className="editNameInputs">
-              {/* <input
-                type="text"
-                placeholder={firstName}
-                onChange={(e) => setNewFirstName(e.target.value)}
-                required
-              />
-              <input
-                type="text"
-                placeholder={lastName}
-                onChange={(e) => setNewLastName(e.target.value)}
-                required
-              /> */}
+              <label htmlFor="username">Username:</label>
               <input
                 type="text"
                 placeholder={userName}
                 onChange={(e) => setNewUserName(e.target.value)}
                 required
               />
+              <label htmlFor="firstName">First name</label>
+              <input type="text" placeholder={firstName} disabled required />
+              <label htmlFor="lastName">Last name</label>
+              <input type="text" placeholder={lastName} disabled required />
             </div>
             <div className="editNameButtons">
               <button className="save-button" type="submit">
