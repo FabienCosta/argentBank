@@ -10,7 +10,7 @@ basePath: /api/v1
 schemes:
   - http
 paths:
-  /user/login:
+  /login:
     post:
       tags:
         - User Module
