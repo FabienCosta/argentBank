@@ -16,6 +16,7 @@ export const Loggin = () => {
 
   const { token, error } = useSelector((state) => state.login);
 
+  //? cette fonction permet de gérer la soumission du formulaire de connexion et de vérifier si les identifiants sont corrects
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(login(email, password));
