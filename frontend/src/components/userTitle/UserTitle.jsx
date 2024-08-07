@@ -12,8 +12,6 @@ export const UserTitle = () => {
   const { succes } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-  // const [newFirstName, setNewFirstName] = useState();
-  // const [newLastName, setNewLastName] = useState();
   const [newUserName, setNewUserName] = useState();
   const [editButton, setEditButton] = useState(false);
 
@@ -36,6 +34,12 @@ export const UserTitle = () => {
     if (succes) {
       setEditButton((current) => !current);
     }
+  };
+
+  const cancelHandler = (e) => {
+    e.preventDefault();
+    setNewUserName("");
+    setEditButton(false);
   };
 
   return (
@@ -72,7 +76,7 @@ export const UserTitle = () => {
               <button className="save-button" type="submit">
                 Save
               </button>
-              <button className="cancel-button" onClick={submitHandler}>
+              <button className="cancel-button" onClick={cancelHandler}>
                 Cancel
               </button>
             </div>
