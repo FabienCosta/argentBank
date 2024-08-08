@@ -129,17 +129,61 @@ paths:
           type: string
       responses:
         '200':
-          description: User transactions retrieved successfully
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+          examples:
+            application/json:
+              - id: 1
+                amount: 100.0
+                date: '2023-10-01'
+                description: 'Grocery shopping'
+              - id: 2
+                amount: 50.0
+                date: '2023-10-02'
+                description: 'Gas station'
         '400':
           description: Invalid Fields
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Invalid request parameters"
+              code: 400
         '401':
           description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Unauthorized access"
+              code: 401
         '403':
           description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Access forbidden"
+              code: 403
         '404':
           description: Transactions not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Transactions not found"
+              code: 404
         '500':
           description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Internal server error"
+              code: 500
   /user/transactions/{id}:
     parameters:
       - in: path
@@ -162,17 +206,62 @@ paths:
           type: string
       responses:
         '200':
-          description: transaction retrieved successfully
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Transaction'
+          examples:
+            application/json:
+              id: 1
+              amount: 100.0
+              date: '2023-10-01'
+              description: 'Grocery shopping'
         '400':
           description: Invalid Field
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Invalid request parameters"
+              code: 400
         '401':
           description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Unauthorized access"
+              code: 401
         '403':
           description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Access forbidden"
+              code: 403
         '404':
           description: Transactions not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Transaction not found"
+              code: 404
         '500':
           description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Internal server error"
+              code: 500
+  /user/transactions/{id}/category:
+    parameters:
+      - in: path
+        name: id
+        description: Transaction category
+        required: true
+        type: string
     patch:
       security:
         - Bearer: []
@@ -191,21 +280,58 @@ paths:
           required: true
           description: Update transaction's informations
           schema:
-              $ref: '#/definitions/TransactionsUpdateCategory'
+            $ref: '#/definitions/TransactionsUpdateCategory'
       responses:
         '200':
           description: transaction patched successfully
         '400':
           description: Invalid Fields
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Invalid request parameters"
+              code: 400
         '401':
           description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Unauthorized access"
+              code: 401
         '403':
           description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Access forbidden"
+              code: 403
         '404':
           description: Transactions not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Transaction not found"
+              code: 404
         '500':
           description: Internal Server Error
-    post:
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Internal server error"
+              code: 500
+  /user/transactions/{id}/note:
+    parameters:
+      - in: path
+        name: id
+        description: Transaction note
+        required: true
+        type: string
+    patch:
       tags:
         - Transactions
       summary: add transaction information (note)
@@ -222,30 +348,60 @@ paths:
           description: transaction added successfully
         '400':
           description: Invalid Fields
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Invalid request parameters"
+              code: 400
         '401':
           description: Unauthorized
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Unauthorized access"
+              code: 401
         '403':
           description: Forbidden
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Access forbidden"
+              code: 403
         '404':
           description: Transactions not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Transaction not found"
+              code: 404
         '500':
           description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+          examples:
+            application/json:
+              message: "Internal server error"
+              code: 500
 definitions:
   Login:
     type: object
     properties:
       username:
         type: string
-        example: "johndoe"
+        example: johndoe
       password:
         type: string
-        example: "password123"
+        example: password123
   LoginResponse:
     type: object
     properties:
       token:
         type: string
-        example: "eyJhbGciOiJIUzI1NiInR5cCI6IkpXVCJ9..."
+        example: eyJhbGciOiJIUzI1NiInR5cCI6IkpXVCJ9...
       expiresIn:
         type: integer
         example: 3600
@@ -254,34 +410,34 @@ definitions:
     properties:
       username:
         type: string
-        example: "johndoe"
+        example: johndoe
       password:
         type: string
-        example: "password123"
+        example: password123
       email:
         type: string
-        example: "johndoe@example.com"
+        example: johndoe@example.com
   UserProfile:
     type: object
     properties:
       firstName:
         type: string
-        example: "John"
+        example: John
       lastName:
         type: string
-        example: "Doe"
+        example: Doe
       email:
         type: string
-        example: "johndoe@example.com"
+        example: johndoe@example.com
   ApiResponse:
     type: object
     properties:
       status:
         type: string
-        example: "success"
+        example: success
       message:
         type: string
-        example: "Operation completed successfully"
+        example: Operation completed successfully
       data:
         type: object
         additionalProperties: true
@@ -290,14 +446,22 @@ definitions:
     properties:
       category:
         type: string
-        example: "Groceries"
+        example: Groceries
   Transaction:
     type: object
     properties:
       note:
         type: string
-        example: "Dinner at restaurant"
-
+        example: Dinner at restaurant
+  ErrorResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: "Error message"
+      code:
+        type: integer
+        example: 400
 securityDefinitions:
   Bearer:
     type: apiKey

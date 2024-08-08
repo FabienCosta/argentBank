@@ -19,10 +19,8 @@ export const Loggin = () => {
   //? cette fonction permet de gérer la soumission du formulaire de connexion et de vérifier si les identifiants sont corrects
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // ! ce dispatch permet d'envoyer les données de connexion à l'action login qui se charge de les envoyer au serveur
-    dispatch(login(email, password));
     try {
-      const response = await login(email, password);
+      const response = await dispatch(login(email, password));
       if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
         navigate("/user");
